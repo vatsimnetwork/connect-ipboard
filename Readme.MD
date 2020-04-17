@@ -8,10 +8,14 @@ Based on [A-Lawrence/VatsimIPBoardAuth](https://github.com/A-Lawrence/VatsimIPBo
 Installing
 ==========
 
-```sql
-INSERT INTO `ibf_core_login_handlers` (`login_key`, `login_settings`, `login_order`, `login_acp`, `login_enabled`) VALUES ('Vatsim', '{"client_id":null,"client_secret":null,"scope":null}', '1', '0', '1');
+- Take a backup. Please!
+- Copy all files into system/Login
+Run the following MySQL Commands to add this login handler to your installation, add a vatsim_cid field to the members table and then adds some needed entries to your languages table (English only). make sure that you edit the queries to match your IPBoard prefix if it isn't default.
 
-ALTER TABLE `ibf_core_members` ADD `vatsim_cid` INT(7) UNSIGNED NULL AFTER `member_id`;
+```sql
+INSERT INTO `core_login_methods` (`login_classname`, `login_settings`, `login_order`, `login_acp`, `login_enabled`, `login_register`) VALUES ('IPS\Login\VATSIMSSOv2', '{"client_id":null,"client_secret":null,"scope":null,"sso_requirements_url":null, "base_url":null}', '4', '1', '0', '0');
+
+ALTER TABLE `core_members` ADD `vatsim_cid` INT(7) UNSIGNED NULL AFTER `member_id`;
 ```
  
 
