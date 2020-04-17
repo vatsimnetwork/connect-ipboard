@@ -26,7 +26,7 @@ class _VATSIMSSOv2 extends LoginAbstract
 
         $redirectUrl = \IPS\Http\Url::internal("login/?loginProcess=VATSIMSSOv2", "none");
 
-        return "<a href='$redirectUrl' type='submit' class='ipsButton ipsButton_primary'>VATSIM LOGIN</a>";
+        return "<a href='$redirectUrl' type='submit' class='ipsButton ipsButton_verySmall ipsButton_fullWidth ipsSocial vatsimLoginBtn' style='background-color: #478f79'>Sign in with VATSIM</a>";
 
     }
 
