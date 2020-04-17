@@ -106,15 +106,16 @@ class _VATSIMSSOv2 extends LoginAbstract
                 if ($result && isset($result->data->cid)) {
 
                     /* Search for a member by their VATSIM ID */
-
                     $member = \IPS\Login\VatsimMember::load($result->data->cid, 'vatsim_cid');
 
-                    /* If no member is returned, create one */
+                    /* If no member is returned, check for an email and then if still not found, create one */
                     if (!$member->member_id) {
+                        $member = \IPS\Login\VatsimMember::load($result->data->personal->email, 'email');
+                    }
 
+                    if(!$member->member_id) {
                         $member = new \IPS\Login\VatsimMember;
                         $member->member_group_id = \IPS\Settings::i()->member_group;
-
                     }
 
                     /* Take the returned user or created user and update their details */
