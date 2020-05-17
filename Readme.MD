@@ -32,6 +32,10 @@ INSERT INTO `core_sys_lang_words` (`word_id`, `lang_id`, `word_app`, `word_key`,
 - Visit Customisation > Themes and click "Edit HTML/CSS" for the default theme (you'll have to figure out these steps for any custom/purchased templates)
 - Locate loginPopup in the global section and modify it to match: https://gist.github.com/A-Lawrence/d0fe1ffcf13c15e1926d (What we're achiving here is disabling the normal login for users)
 - Locate login in the system section and modify it to match: https://gist.github.com/A-Lawrence/135238e6aff855fcb571 (We're also disabling normal login from the standard login screen)
+- Add the following code to the following template (theme of your choice) `core/front/global/customFieldsDisplay/` under the existing foreach code.
+```html
+<li class='ipsResponsive_hidePhone ipsType_break'>VATSIM ID: {$author->vatsim_cid}</li>
+```
 Save those templates (your forum may lose it's styling momentarily whils the style caches are rebuilt)
 That's it! Go and use it.
 
